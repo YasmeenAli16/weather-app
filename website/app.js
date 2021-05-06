@@ -53,6 +53,7 @@ function getInfo(elem){
     console.log(info);
     // add info to POST request
     postInfo('/post', {date:newDate, temp:info.main.temp, content:feelings})
+    .then(() => update());
   })
   // alert message if zip code is empty
   if(!zip){
