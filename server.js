@@ -25,4 +25,24 @@ app.listen(port, () => {
     console.log(`Server started on port ${port}`);
   });
 
+// GET route and callback functions
+app.get('/get', allData);
 
+function allData (req, res) {
+  res.send(projectData);
+ 
+};
+
+  // POST route and callback functions
+  // add data to endpoint object
+app.post('/post', addData);
+
+function addData(req, res){
+  console.log(req.body);
+  projectData = {
+      date: req.body.date,
+      temp: req.body.temp,
+      content: req.body.content   
+  }
+  res.send(projectData);
+}
