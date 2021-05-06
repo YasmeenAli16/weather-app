@@ -59,9 +59,20 @@ function getInfo(elem){
     alert("you must enter zip code");
   }
 };
-
 // event listener handler for the "generate" button which call function getInfo
 document.getElementById('generate').addEventListener('click', getInfo);
 
-
-
+// update user interface info
+const update = async () => {
+  const req = await fetch('/get');
+  // retrieve info on the client side, existing DOM elements with innerHTML property
+  try{
+    const Info = await req.json();
+    document.getElementById('date').innerHTML = `Date: ${Info.date}`;
+    document.getElementById('temp').innerHTML = `Temperature: ${Info.temp}°C`;
+    document.getElementById('content').innerHTML = `Feelings: ${Info.content}`;
+  }catch(error){
+    // handle error with update info
+    console.log('error with update info', error);
+  }
+}
